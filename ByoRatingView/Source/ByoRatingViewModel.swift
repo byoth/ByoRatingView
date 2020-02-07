@@ -18,19 +18,23 @@ public struct ByoRatingViewModel {
     
     public var itemImageNames: (full: String, half: String, empty: String)
     
+    public var completion: ((CGFloat) -> Void)?
+    
     
     public init(
         rating: CGFloat = 2.5,
         itemsCount: Int = 5,
         itemSize: CGSize = .init(width: 48, height: 48),
         itemsSpacing: CGFloat = 4,
-        itemImageNames: (full: String, half: String, empty: String) = (full: "", half: "", empty: "")) {
+        itemImageNames: (full: String, half: String, empty: String) = (full: "", half: "", empty: ""),
+        completion: ((CGFloat) -> Void)? = nil) {
         
         self.rating = rating
         self.itemsCount = itemsCount
         self.itemSize = itemSize
         self.itemsSpacing = itemsSpacing
         self.itemImageNames = itemImageNames
+        self.completion = completion
     }
     
     

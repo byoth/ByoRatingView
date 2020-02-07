@@ -113,7 +113,7 @@ public final class ByoRatingView: UIView {
         self.updateRating(gesture: gesture)
         
         if gesture.state == .ended {
-            // TODO: - Need to implement completion
+            self.viewModel?.completion?(self.rating)
         }
     }
     
