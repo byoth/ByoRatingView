@@ -116,7 +116,9 @@ public final class ByoRatingView: UIView {
         let location: CGPoint = gesture.location(in: self)
         let rating: CGFloat = self.getRating(location: location)
         
-        self.viewModel?.rating = rating
+        if self.viewModel?.rating != rating {
+            self.viewModel?.rating = rating
+        }
     }
     
     
@@ -140,6 +142,28 @@ public final class ByoRatingView: UIView {
             
             self.stackView.addArrangedSubview(imageView)
         }
+        
+        self.animateItemsToUpdate()
+    }
+    
+    private func animateItemsToUpdate() {
+        let views: [UIView] = self.stackView.arrangedSubviews
+        
+        views.enumerated().forEach { (offset, view) in
+            if offset == Int(ceil(self.rating)) - 1 {
+                self.animateItemToUpdate(view: view)
+            }
+        }
+    }
+    
+    private func animateItemToUpdate(view: UIView) {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
+            view.transform = .init(scaleX: 1.1, y: 1.1)
+        })
+        
+        UIView.animate(withDuration: 0.7, delay: 0.1, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            view.transform = .init(scaleX: 1, y: 1)
+        })
     }
     
     
