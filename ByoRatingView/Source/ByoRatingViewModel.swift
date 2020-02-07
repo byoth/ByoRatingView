@@ -10,26 +10,31 @@ import UIKit
 
 
 public struct ByoRatingViewModel {
+    public var rating: CGFloat
     
-    // MARK: - Input
+    public var itemsCount: Int
+    public var itemSize: CGSize
+    public var itemsSpacing: CGFloat
     
-    public var rating: CGFloat = 2.5
-    
-    public var itemsCount: Int = 5
-    public var itemSize: CGSize = .init(width: 64, height: 64)
-    public var itemsSpacing: CGFloat = 8
-    
-    public var itemImageNames: (full: String, half: String, empty: String) = (full: "", half: "", empty: "")
+    public var itemImageNames: (full: String, half: String, empty: String)
     
     
-    public init() {
+    public init(
+        rating: CGFloat = 2.5,
+        itemsCount: Int = 5,
+        itemSize: CGSize = .init(width: 48, height: 48),
+        itemsSpacing: CGFloat = 4,
+        itemImageNames: (full: String, half: String, empty: String) = (full: "", half: "", empty: "")) {
+        
+        self.rating = rating
+        self.itemsCount = itemsCount
+        self.itemSize = itemSize
+        self.itemsSpacing = itemsSpacing
+        self.itemImageNames = itemImageNames
     }
     
-    
-    // MARK: - Output
     
     public var itemFrame: CGRect {
         return .init(origin: .zero, size: self.itemSize)
     }
-    
 }
