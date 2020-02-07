@@ -19,6 +19,11 @@ public final class ByoRatingView: UIView {
     private let stackView: UIStackView = .init()
     
     
+    // MARK: - Constant
+    
+    private let ratingUnit: CGFloat = 0.5
+    
+    
     // MARK: - Variable
     
     override public var intrinsicContentSize: CGSize {
@@ -186,9 +191,9 @@ public final class ByoRatingView: UIView {
         }
         
         let rating: CGFloat = .init(location.x / self.bounds.width * viewModel.itemsCount.f)
-        let roundedRating: CGFloat = rating.round(nearest: 0.5)
+        let roundedRating: CGFloat = rating.round(nearest: self.ratingUnit)
         
-        return min(max(roundedRating, 0), viewModel.itemsCount.f)
+        return min(max(roundedRating, self.ratingUnit), viewModel.itemsCount.f)
     }
     
     private func getItemImageView(at index: Int, frame: CGRect) -> UIImageView {
