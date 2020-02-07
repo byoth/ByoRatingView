@@ -19,7 +19,7 @@ public final class ByoRatingView: UIView {
     private let stackView: UIStackView = .init()
     
     
-    // MARK: - View Model
+    // MARK: - Variable
     
     private var viewModel: ByoRatingViewModel? {
         didSet {
@@ -29,27 +29,29 @@ public final class ByoRatingView: UIView {
         }
     }
     
-    public func bind(viewModel: ByoRatingViewModel) {
-        self.viewModel = viewModel
+    public var rating: CGFloat {
+        return self.viewModel?.rating ?? 0
     }
     
     
-    // MARK: - Init
+    // MARK: - Setup
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.setupUI()
+        self.setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.setupUI()
+        self.setup()
     }
     
-    
-    // MARK: - Setup
+    private func setup() {
+        self.setupUI()
+        self.setupGesture()
+    }
     
     private func setupUI() {
         self.backgroundColor = .clear
@@ -68,6 +70,49 @@ public final class ByoRatingView: UIView {
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
         }
+    }
+    
+    private func setupGesture() {
+        let panGesture: UIPanGestureRecognizer = .init(target: self, action: #selector(didPan))
+        let tapGesture: UITapGestureRecognizer = .init(target: self, action: #selector(didTap))
+        
+        let gestures: [UIGestureRecognizer] = [panGesture, tapGesture]
+        
+        gestures.forEach {
+            self.addGestureRecognizer($0)
+        }
+    }
+    
+    public func bind(viewModel: ByoRatingViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    
+    // MARK: - Action
+    
+    @objc
+    private func didPan(_ sender: UIPanGestureRecognizer) {
+        self.didGesture(sender)
+    }
+    
+    @objc
+    private func didTap(_ sender: UITapGestureRecognizer) {
+        self.didGesture(sender)
+    }
+    
+    private func didGesture(_ gesture: UIGestureRecognizer) {
+        self.updateRating(gesture: gesture)
+        
+        if gesture.state == .ended {
+            // TODO: - Need to implement completion
+        }
+    }
+    
+    private func updateRating(gesture: UIGestureRecognizer) {
+        let location: CGPoint = gesture.location(in: self)
+        let rating: CGFloat = self.getRating(location: location)
+        
+        self.viewModel?.rating = rating
     }
     
     
@@ -89,6 +134,17 @@ public final class ByoRatingView: UIView {
             
             self.stackView.addArrangedSubview(view)
         }
+    }
+    
+    
+    // MARK: - Instance
+    
+    private func getRating(location: CGPoint) -> CGFloat {
+        guard let viewModel = self.viewModel else {
+            return 0
+        }
+        
+        return .init(location.x / self.bounds.width * viewModel.itemsCount.f)
     }
     
 }
