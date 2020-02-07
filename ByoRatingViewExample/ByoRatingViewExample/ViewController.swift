@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     private func setupRatingView() {
         var viewModel: ByoRatingViewModel = .init()
         
+        viewModel.itemImageNames = (full: "i_star_full", half: "i_star_half", empty: "i_star_empty")
+        
         self.ratingView.bind(viewModel: viewModel)
     }
 }
