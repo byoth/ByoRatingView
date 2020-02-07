@@ -10,6 +10,8 @@ import UIKit
 
 import ByoRatingView
 
+import ToastQueue
+
 
 class ViewController: UIViewController {
     @IBOutlet weak var ratingView: ByoRatingView!
@@ -26,6 +28,9 @@ class ViewController: UIViewController {
         var viewModel: ByoRatingViewModel = .init()
         
         viewModel.itemImageNames = (full: "i_star_full", half: "i_star_half", empty: "i_star_empty")
+        viewModel.completion = {
+            ToastManager.shared.showMessage("\($0)")
+        }
         
         self.ratingView.bind(viewModel: viewModel)
     }

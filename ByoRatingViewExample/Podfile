@@ -7,4 +7,6 @@ target 'ByoRatingViewExample' do
 
   # Pods for ByoRatingViewExample
   pod 'ByoRatingView', path: '../'
+  
+  pod 'ToastQueue', :git => 'https://github.com/byoth/ToastQueue.git'
 end
