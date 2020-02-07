@@ -11,6 +11,8 @@
 		3A29BB4223EAA66D006CD1A7 /* ByoRatingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A29BB4023EAA66D006CD1A7 /* ByoRatingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A29BB4A23EAACDF006CD1A7 /* ByoRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A29BB4923EAACDF006CD1A7 /* ByoRatingView.swift */; };
 		3A29BB4C23EAAD0A006CD1A7 /* ByoRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A29BB4B23EAAD0A006CD1A7 /* ByoRatingViewModel.swift */; };
+		3A62EC9823ED52DA00105955 /* CGFloatLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A62EC9623ED52DA00105955 /* CGFloatLiteral.swift */; };
+		3A62EC9923ED52DA00105955 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A62EC9723ED52DA00105955 /* CGFloat+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		3A29BB4123EAA66D006CD1A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A29BB4923EAACDF006CD1A7 /* ByoRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByoRatingView.swift; sourceTree = "<group>"; };
 		3A29BB4B23EAAD0A006CD1A7 /* ByoRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByoRatingViewModel.swift; sourceTree = "<group>"; };
+		3A62EC9623ED52DA00105955 /* CGFloatLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatLiteral.swift; sourceTree = "<group>"; };
+		3A62EC9723ED52DA00105955 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		B32B1386541DA066CA657B53 /* Pods-ByoRatingView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ByoRatingView.release.xcconfig"; path = "Target Support Files/Pods-ByoRatingView/Pods-ByoRatingView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,10 +80,20 @@
 		3A29BB4823EAA98A006CD1A7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3A62EC9523ED52DA00105955 /* Extension */,
 				3A29BB4923EAACDF006CD1A7 /* ByoRatingView.swift */,
 				3A29BB4B23EAAD0A006CD1A7 /* ByoRatingViewModel.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		3A62EC9523ED52DA00105955 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3A62EC9623ED52DA00105955 /* CGFloatLiteral.swift */,
+				3A62EC9723ED52DA00105955 /* CGFloat+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		ADDA3C7E9F4DC9B2248441F0 /* Frameworks */ = {
@@ -197,6 +211,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A29BB4C23EAAD0A006CD1A7 /* ByoRatingViewModel.swift in Sources */,
+				3A62EC9823ED52DA00105955 /* CGFloatLiteral.swift in Sources */,
+				3A62EC9923ED52DA00105955 /* CGFloat+Extension.swift in Sources */,
 				3A29BB4A23EAACDF006CD1A7 /* ByoRatingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
