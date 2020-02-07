@@ -21,6 +21,10 @@ public final class ByoRatingView: UIView {
     
     // MARK: - Variable
     
+    override public var intrinsicContentSize: CGSize {
+        return self.getContentSize()
+    }
+    
     private var viewModel: ByoRatingViewModel? {
         didSet {
             if let viewModel = self.viewModel {
@@ -122,6 +126,8 @@ public final class ByoRatingView: UIView {
         self.stackView.spacing = viewModel.itemsSpacing
         
         self.updateStackView(viewModel: viewModel)
+        
+        self.invalidateIntrinsicContentSize()
     }
     
     private func updateStackView(viewModel: ByoRatingViewModel) {
@@ -138,6 +144,17 @@ public final class ByoRatingView: UIView {
     
     
     // MARK: - Instance
+    
+    private func getContentSize() -> CGSize {
+        guard let viewModel = self.viewModel else {
+            return .zero
+        }
+        
+        let width: CGFloat = viewModel.itemSize.width * viewModel.itemsCount.f + viewModel.itemsSpacing * max(viewModel.itemsCount - 1, 0).f
+        let height: CGFloat = viewModel.itemSize.height
+        
+        return .init(width: width, height: height)
+    }
     
     private func getRating(location: CGPoint) -> CGFloat {
         guard let viewModel = self.viewModel else {
