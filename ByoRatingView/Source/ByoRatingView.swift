@@ -161,7 +161,10 @@ public final class ByoRatingView: UIView {
             return 0
         }
         
-        return .init(location.x / self.bounds.width * viewModel.itemsCount.f)
+        let rating: CGFloat = .init(location.x / self.bounds.width * viewModel.itemsCount.f)
+        let roundedRating: CGFloat = rating.round(nearest: 0.5)
+        
+        return min(max(roundedRating, 0), viewModel.itemsCount.f)
     }
     
 }
