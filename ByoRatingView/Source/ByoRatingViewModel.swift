@@ -13,15 +13,13 @@ public struct ByoRatingViewModel {
     
     // MARK: - Input
     
-    public var rating: CGFloat = 0 {
-        didSet {
-            print(self.rating)
-        }
-    }
+    public var rating: CGFloat = 2.5
     
     public var itemsCount: Int = 5
     public var itemSize: CGSize = .init(width: 64, height: 64)
     public var itemsSpacing: CGFloat = 8
+    
+    public var itemImageNames: (full: String, half: String, empty: String) = (full: "", half: "", empty: "")
     
     
     public init() {

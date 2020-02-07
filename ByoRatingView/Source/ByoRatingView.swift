@@ -135,10 +135,10 @@ public final class ByoRatingView: UIView {
             $0.removeFromSuperview()
         }
         
-        for _ in 0 ..< viewModel.itemsCount {
-            let view: UIView = .init(frame: viewModel.itemFrame)
+        for i in 0 ..< viewModel.itemsCount {
+            let imageView: UIImageView = self.getItemImageView(at: i, frame: viewModel.itemFrame)
             
-            self.stackView.addArrangedSubview(view)
+            self.stackView.addArrangedSubview(imageView)
         }
     }
     
@@ -165,6 +165,34 @@ public final class ByoRatingView: UIView {
         let roundedRating: CGFloat = rating.round(nearest: 0.5)
         
         return min(max(roundedRating, 0), viewModel.itemsCount.f)
+    }
+    
+    private func getItemImageView(at index: Int, frame: CGRect) -> UIImageView {
+        let imageView: UIImageView = .init(frame: frame)
+        
+        imageView.image = self.getItemImage(at: index)
+        
+        return imageView
+    }
+    
+    private func getItemImage(at index: Int) -> UIImage? {
+        guard let viewModel = self.viewModel else {
+            return nil
+        }
+        
+        var imageName: String!
+        
+        if index < Int(viewModel.rating) {
+            imageName = viewModel.itemImageNames.full
+            
+        } else if index.f < viewModel.rating {
+            imageName = viewModel.itemImageNames.half
+            
+        } else {
+            imageName = viewModel.itemImageNames.empty
+        }
+        
+        return UIImage(named: imageName)
     }
     
 }
